@@ -1,0 +1,12 @@
+@startuml initialiser_exemplaire
+start
+while (Livre existant?) 
+  :Saisir un livre;
+  :Ajouter les méta-données du livre;
+endwhile (livre saisie)
+:Saisir un exemplaire;
+:Imprimer le code exemplaire;
+:Valider la couverture;
+:Valider la mise en rayon;
+stop
+@enduml

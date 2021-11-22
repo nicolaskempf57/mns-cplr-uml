@@ -1,0 +1,18 @@
+@startuml etat_exemplaire
+hide empty description
+state "Comme neuf" as comme_neuf
+state "Moyen" as moyen
+state "Mauvais" as mauvais
+state "À pilonner" as a_pilonner
+state "À Réparer" as a_reparer
+[*] --> comme_neuf
+comme_neuf --> moyen
+moyen --> mauvais
+moyen --> a_reparer
+mauvais --> a_reparer
+a_reparer --> comme_neuf
+a_reparer --> moyen
+mauvais --> a_pilonner
+a_pilonner --> [*]
+
+@enduml

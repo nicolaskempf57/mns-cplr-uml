@@ -1,0 +1,13 @@
+@startuml etat_couverture
+hide empty description
+state "À couvrir" as a_couvrir
+state "À recouvrir" as a_recouvrir
+state "Couvert" as couvert
+[*] --> a_couvrir
+a_couvrir --> couvert
+couvert --> a_recouvrir
+a_recouvrir --> [*]
+a_recouvrir --> couvert
+couvert --> [*]
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml etat_emprunt
+hide empty description
+state "Disponible" as disponible
+state "Réservé" as reserve
+state "Indisponible" as indisponible
+state "Emprunté" as emprunte
+state "En quarantaire" as en_quarantaine
+[*] -> indisponible
+indisponible -> disponible
+disponible -> indisponible : Réservation à l'usage d'un bibliothécaire
+disponible --> reserve : Demande d'emprunt validée
+reserve --> disponible : [au bout de 10 jours] Exemplaire remis en rayon
+reserve --> emprunte : Réservation récupérée par l'usager
+emprunte -> en_quarantaine
+en_quarantaine -> disponible : [au bout de 5 jours]
+disponible ---> [*]
+
+@enduml

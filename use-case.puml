@@ -1,0 +1,34 @@
+@startuml usecase
+left to right direction
+actor "Bibliothécaire" as b
+actor "Administrateur" as admin
+actor "Usager" as usager
+rectangle SIGB {
+  usecase "Saisir un livre" as saisir_livre
+  usecase "Saisir un exemplaire" as saisir_exemplaire
+  usecase "Se connecter" as connecte
+  usecase "S'inscrire" as inscrire
+  usecase "Vérifier le role" as verif_role
+  usecase "Saisir des informations" as saisir_information
+  usecase "Valider une demande d'emprunt" as valider_demande
+  usecase "Enregistrer un retour" as enregistrer_retour
+  usecase "Mettre à jour l'état du livre" as maj_etat
+  saisir_information .> connecte : include
+  saisir_information ..> verif_role : include
+  inscrire ...> saisir_information : extend
+  saisir_exemplaire --> saisir_information
+  saisir_livre -> saisir_information
+  usecase "Attribuer un role" as attribuer_role
+  usecase "Faire une demande d'emprunt" as demande_emprunt
+  demande_emprunt ..> connecte : include
+  maj_etat ...> enregistrer_retour : extend
+}
+b --> saisir_livre
+b --> saisir_exemplaire
+admin --> attribuer_role
+b <|- admin
+usager ---> demande_emprunt
+b --> valider_demande
+b --> enregistrer_retour
+usager <|- b
+@enduml

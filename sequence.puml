@@ -1,0 +1,23 @@
+@startuml sequence_exemplaire
+actor "Usager" as usager
+actor "Bibliothécaire" as b
+participant "SIGB" as sigb
+b -> sigb: Saisir un nouvel exemplaire
+b -> sigb: Valider la couverture de l'exemplaire
+b -> sigb: Valider la mise en rayon
+usager -> sigb: Demander une réservation
+sigb -> b: Avertir d'une demande de réservation
+alt réservation validée
+    b -> sigb: Valider une réservation
+    sigb -> usager: Avertir de la validation
+    alt réservation récupérée
+        usager -> b: Demande de réservation
+        b -> sigb: Enregistrer l'emprunt
+    else délai dépassé
+        sigb -> b: Avertir d'une réservation à remettre en rayon
+    end
+else réservation invalide
+    b -> sigb: Refuser une réservation
+    sigb ->usager: Avertir de l'indisponibilité
+end
+@enduml
